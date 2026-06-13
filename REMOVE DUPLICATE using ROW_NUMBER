@@ -1,0 +1,33 @@
+-- create
+CREATE TABLE EMPLOYEE (
+  empId INTEGER ,
+  name TEXT NOT NULL,
+  dept TEXT NOT NULL
+);
+
+-- insert
+INSERT INTO EMPLOYEE VALUES (0001, 'Clark', 'Salesssssss');
+INSERT INTO EMPLOYEE VALUES (0001, 'Dave', 'Accounting');
+INSERT INTO EMPLOYEE VALUES (0003, 'Ava', 'Sales');
+INSERT INTO EMPLOYEE VALUES (0001, 'Avaa', 'account');
+INSERT INTO EMPLOYEE VALUES (0002, 'Avaaaa', 'Salesss');
+INSERT INTO EMPLOYEE VALUES (0004, 'karam', 'Salesss');
+INSERT INTO EMPLOYEE VALUES (0004, 'karam', 'Salesss');
+
+-- fetch 
+WITH Ranked AS (
+  SELECT empId, name, dept,
+         ROW_NUMBER() OVER (
+           PARTITION BY empId
+           ORDER BY empId
+         ) AS rn
+  FROM EMPLOYEE
+)
+DELETE FROM EMPLOYEE
+WHERE empId IN (
+  SELECT empId FROM Ranked WHERE rn > 1
+);
+SELECT * FROM EMPLOYEE;
+
+
+
