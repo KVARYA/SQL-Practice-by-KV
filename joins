@@ -1,1 +1,39 @@
+-- create
+CREATE TABLE EMPLOYEE (
+  empId INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  dept TEXT NOT NULL
+);
+
+-- insert
+INSERT INTO EMPLOYEE VALUES (0001, 'Clark', 'Sales');
+INSERT INTO EMPLOYEE VALUES (0002, 'Dave', 'Accounting');
+INSERT INTO EMPLOYEE VALUES (0003, 'Ava', 'Sales');
+
+CREATE TABLE DATA (
+  empId INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  salary INTEGER
+);
+INSERT INTO DATA VALUES (0001, 'Clark', 15000);
+INSERT INTO DATA VALUES (0002, 'Dave', 10000);
+INSERT INTO DATA VALUES (0003, 'Ava', 20000);
+INSERT INTO DATA VALUES (0004, 'kv', 25000);
+
+
+-- fetch 
+SELECT * FROM EMPLOYEE;
+SELECT * FROM DATA;
+
+SELECT e.empId, e.name, e.dept, d.salary
+from EMPLOYEE e 
+left join DATA d 
+on e.empId = d.empId
+
+union 
+
+SELECT e.empId, e.name, e.dept, d.salary
+from EMPLOYEE e 
+right join DATA d 
+on e.empId = d.empId;
 
