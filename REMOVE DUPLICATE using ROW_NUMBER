@@ -37,3 +37,14 @@ FROM EMPLOYEE
 GROUP BY empId;
 
 
+
+/////////////////////////////
+SELECT empId, name, dept
+FROM (
+  SELECT empId, name, dept,
+         ROW_NUMBER() OVER (PARTITION BY empId ORDER BY empId) AS rn
+  FROM EMPLOYEE
+) t
+WHERE rn = 1;
+
+
