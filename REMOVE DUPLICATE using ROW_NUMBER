@@ -31,3 +31,9 @@ SELECT * FROM EMPLOYEE;
 
 
 
+///////////////////////////////
+SELECT empId, MIN(name) AS name, MIN(dept) AS dept
+FROM EMPLOYEE
+GROUP BY empId;
+
+
